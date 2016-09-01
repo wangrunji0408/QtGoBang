@@ -135,12 +135,12 @@ void MainWindow::newClient(QHostAddress ip)
 	if(result == QMessageBox::Yes)
 	{
 		messager->acceptClient();
-		showInfo(tr("接受了对局请求"));
+		showInfo(tr("接受了连接请求"));
 	}
 	else
 	{
 		messager->rejectClient();
-		showInfo(tr("拒绝了对局请求"));
+		showInfo(tr("拒绝了连接请求"));
 	}
 }
 

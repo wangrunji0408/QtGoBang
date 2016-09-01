@@ -30,3 +30,6 @@ FORMS    += mainwindow.ui \
     ipdialog.ui
 
 CONFIG += c++11
+
+RESOURCES += \
+    res.qrc

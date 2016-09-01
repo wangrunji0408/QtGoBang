@@ -1,6 +1,7 @@
 #include "gridview.h"
 #include <QPainter>
 #include <QDebug>
+#include <QImage>
 
 GridView::GridView(QWidget *parent) : QWidget(parent)
 {
@@ -24,17 +25,20 @@ void GridView::paintEvent(QPaintEvent *)
 	painter.drawEllipse(getPoint(QPoint(8-4, 8+4)), 2, 2);
 	painter.drawEllipse(getPoint(QPoint(8+4, 8-4)), 2, 2);
 
+	QImage bomb = QImage(":/icon/bomb").scaledToHeight(PIECE_SIZE);
 	for(int i=1; i<=LU; ++i)
 		for(int j=1; j<=LU; ++j)
 		{
+//			painter.drawImage(getPoint(QPoint(i, j)) - QPoint(PIECE_SIZE, PIECE_SIZE) / 2, bomb);
 			int player = manager->get(QPoint(i, j));
 			if(player == GoBangManager::NONE)
 			{
 //				int count = manager->dangerCount(QPoint(i, j));
 				if(dangerShow && manager->isDangerPoint(QPoint(i, j)))
 				{
-					painter.setBrush(Qt::red);
-					painter.drawEllipse(getPoint(QPoint(i, j)), 5, 5);
+					painter.drawImage(getPoint(QPoint(i, j)) - QPoint(PIECE_SIZE, PIECE_SIZE) / 2, bomb);
+//					painter.setBrush(Qt::red);
+//					painter.drawEllipse(getPoint(QPoint(i, j)), 5, 5);
 				}
 				continue;
 			}
